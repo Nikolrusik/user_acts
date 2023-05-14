@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from datetime import datetime
@@ -26,6 +27,10 @@ class Person(models.Model):
     def __str__(self):
         return f"{self.firstname} {self.lastname}"
 
+    class Meta:
+        verbose_name = 'Person'
+        verbose_name_plural = 'Persons'
+
 
 class Address(models.Model):
     city: str = models.CharField(max_length=255, verbose_name='City')
@@ -40,6 +45,10 @@ class Address(models.Model):
 
     def __str__(self):
         return f"{self.person} {self.city}"
+
+    class Meta:
+        verbose_name = 'Address'
+        verbose_name_plural = 'Addresses'
 
 
 class Action(models.Model):
@@ -58,3 +67,7 @@ class Action(models.Model):
 
     def __str__(self):
         return f'Person={self.person} - {self.pk}'
+
+    class Meta:
+        verbose_name = 'Action'
+        verbose_name_plural = 'Actions'
